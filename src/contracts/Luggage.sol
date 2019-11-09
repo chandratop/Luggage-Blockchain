@@ -8,6 +8,7 @@ contract Luggage {
     struct request {
         uint id;
         address passenger;
+        string name;
         uint weight; // Assumes every bag is separate
         bytes4 categories;
         bool expired;
@@ -16,6 +17,7 @@ contract Luggage {
     event requestCreated (
         uint id,
         address passenger,
+        string name,
         uint weight,
         bytes4 categories,
         bool expired
@@ -24,6 +26,7 @@ contract Luggage {
     event requestAccepted (
         uint id,
         address passenger,
+        string name,
         uint weight,
         bytes4 categories,
         bool expired
@@ -40,8 +43,8 @@ contract Luggage {
         require(bytes(_name).length > 0,"Invalid Name");
         require(_weight > 0,"Invalid Weight");
         requestCount ++;
-        requests[requestCount] = request(requestCount, msg.sender, _weight,_categories,false);
-        emit requestCreated(requestCount, msg.sender, _weight,_categories,false);
+        requests[requestCount] = request(requestCount, msg.sender, _name,_weight,_categories,false);
+        emit requestCreated(requestCount, msg.sender, _name,_weight,_categories,false);
     }
 
     function acceptRequest(uint _id) public payable {
