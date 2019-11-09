@@ -9,6 +9,7 @@ contract Luggage {
         string name;
         uint weight; // Assumes every bag is separate
         bytes4 categories;
+        string flightNo;
         bool expired;
     }
 
@@ -18,6 +19,7 @@ contract Luggage {
         string name,
         uint weight,
         bytes4 categories,
+        string flightNo,
         bool expired
     );
 
@@ -27,6 +29,7 @@ contract Luggage {
         string name,
         uint weight,
         bytes4 categories,
+        string flightNo,
         bool expired
     );
     mapping(uint => request) public requests;
@@ -36,12 +39,12 @@ contract Luggage {
     constructor() public {
         name = "Luggage-Contract";
     }
-    function createRequest(string memory _name,uint _weight,bytes4 _categories) public {
+    function createRequest(string memory _name,uint _weight,bytes4 _categories,string memory _flightNo) public {
         require(bytes(_name).length > 0,"Invalid Name");
         require(_weight > 0,"Invalid Weight");
         requestCount ++;
-        requests[requestCount] = request(requestCount, address(0), _name,_weight,_categories,false);
-        emit requestCreated(requestCount, address(0), _name,_weight,_categories,false);
+        requests[requestCount] = request(requestCount, address(0), _name,_weight,_categories,_flightNo,false);
+        emit requestCreated(requestCount, address(0), _name,_weight,_categories,_flightNo,false);
     }
 
     function acceptRequest(uint _id,address payable _acceptor) public payable {
@@ -54,7 +57,7 @@ contract Luggage {
         _request.expired = true;
         requests[_id] = _request;
         address(_acceptor).transfer(msg.value);
-        emit requestAccepted(requestCount, msg.sender, _request.name, _request.weight, _request.categories, _request.expired);
+        emit requestAccepted(requestCount, msg.sender, _request.name, _request.weight, _request.categories,_request.flightNo, _request.expired);
     }
 
 }
