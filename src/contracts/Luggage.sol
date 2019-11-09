@@ -2,12 +2,10 @@ pragma solidity ^0.5.0;
 
 contract Luggage {
     string public name;
-
-    
-    enum Categories {food,clothing,electronics,other};
+    enum Categories {food,clothing,electronics,other}
     struct request {
         uint id;
-        address passenger;
+        address payable passenger;
         string name;
         uint weight; // Assumes every bag is separate
         bytes4 categories;
@@ -16,7 +14,7 @@ contract Luggage {
 
     event requestCreated (
         uint id,
-        address passenger,
+        address payable passenger,
         string name,
         uint weight,
         bytes4 categories,
@@ -25,7 +23,7 @@ contract Luggage {
 
     event requestAccepted (
         uint id,
-        address passenger,
+        address payable passenger,
         string name,
         uint weight,
         bytes4 categories,
@@ -50,14 +48,14 @@ contract Luggage {
     function acceptRequest(uint _id) public payable {
         request memory _request = requests[_id];        //Get the request
         address payable _payer = _request.passenger;    //Get the person making the payment
-        require(_request.id > 0 && _request.id <= requestCount);
-        require(msg.value >= _request.weight); 
-        require(!_request.expired);
-        require(_payer != msg.sender);
+        require(_request.id > 0 && _request.id <= requestCount, "Invalid ID");
+        require(msg.value >= _request.weight, "Invalid Value");
+        require(!_request.expired, "Request already accepted");
+        require(_payer != msg.sender, "Requester is same as sender");
         _request.expired = true;
         requests[_id] = _request;
-        address(msg.sender).transfer(msg.value)
-        emit requestAccepted()
+        address(msg.sender).transfer(msg.value);
+        emit requestAccepted(requestCount, _payer, _request.name, _request.weight, _request.categories, _request.expired);
     }
 
 }

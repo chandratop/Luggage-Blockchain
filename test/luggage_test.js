@@ -45,9 +45,9 @@ contract('Luggage', ([deployer, seller, buyer]) => {
             assert.equal(request_id.expired, false, "Expiry state is same")
 
             // FAILURE: Product must have a name
-            await await luggage.createProduct('', web3.utils.toWei('1', 'Ether'), { from: seller }).should.be.rejected;
+            await await luggage.createRequest('', web3.utils.toWei('1', 'Ether'), [1, 0, 1, 1], { from: seller }).should.be.rejected;
             // FAILURE: Product must have a price
-            await await luggage.createProduct('Vignesh', 0, { from: seller }).should.be.rejected;
+            await await luggage.createRequest('Vignesh', 0, [1, 0, 1, 1], { from: seller }).should.be.rejected;
         })
     })
 })
