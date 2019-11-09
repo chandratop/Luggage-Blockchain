@@ -14,8 +14,6 @@ contract Luggage {
         uint id;
         address passenger;
         uint weight;
-        uint bags;
-        uint amount;
         bool expired;
     }
 
@@ -23,8 +21,6 @@ contract Luggage {
         uint id,
         address passenger,
         uint weight,
-        uint bags,
-        uint amount,
         bool expired
     );
     mapping(uint => request) public requests;
@@ -35,12 +31,12 @@ contract Luggage {
         name = "Luggage-Contract";
     }
 
-    function createRequest(string memory _name,uint _weight, uint _bags, uint _amount) public {
+    function createRequest(string memory _name,uint _weight) public {
         require(bytes(_name).length > 0,"Invalid Name");
         require(_weight > 0,"Invalid Weight");
         requestCount ++;
-        requests[requestCount] = request(requestCount, msg.sender, _weight,_bags,_amount,false);
-        emit requestCreated(requestCount, msg.sender, _weight,_bags,_amount,false);
+        requests[requestCount] = request(requestCount, msg.sender, _weight,false);
+        emit requestCreated(requestCount, msg.sender, _weight,false);
     }
 
 }
