@@ -15,14 +15,16 @@ class App extends Component {
   async loadBlockchainData() {
     const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"))
     const accounts = await web3.eth.getAccounts()
+    // console.log(accounts)
+    // const web3 = window.web3
+    // const accounts = await web3.eth.getAccounts()
     console.log(accounts)
+    this.setState({ account: accounts[0] })
   }
   constructor(props) {
     super(props)
     this.state = {
-      account: '',
-      productCount: 0,
-      products: [],
+      requests: [],
       loading: true
     }
   }
