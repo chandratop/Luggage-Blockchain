@@ -40,8 +40,8 @@ contract Luggage {
         require(bytes(_name).length > 0,"Invalid Name");
         require(_weight > 0,"Invalid Weight");
         requestCount ++;
-        requests[requestCount] = request(requestCount, 0, _name,_weight,_categories,false);
-        emit requestCreated(requestCount,0, _name,_weight,_categories,false);
+        requests[requestCount] = request(requestCount, address(0), _name,_weight,_categories,false);
+        emit requestCreated(requestCount, address(0), _name,_weight,_categories,false);
     }
 
     function acceptRequest(uint _id,address payable _acceptor) public payable {
