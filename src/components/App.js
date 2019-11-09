@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Web3 from 'web3'
-import logo from '../logo.png';
 import './App.css';
-import Marketplace from '../abis/Marketplace.json'
+import Luggage from '../abis/Luggage.json'
+// import Migration from '../abis/Migrations.json'
 import Navbar from './Navbar'
 
 class App extends Component {
@@ -30,14 +30,22 @@ class App extends Component {
     // Load account
     const accounts = await web3.eth.getAccounts()
     this.setState({ account: accounts[0] })
-    const networkId = await web3.eth.net.getId()
-    const networkData = Marketplace.networks[networkId]
-    if(networkData) {
-      const marketplace = web3.eth.Contract(Marketplace.abi, networkData.address)
-      console.log(marketplace)
+    const networkIdLuggage = await web3.eth.net.getId()
+    const networkDataLuggage = Luggage.networks[networkIdLuggage]
+    // const networkIdMigration = await web3.eth.net.getId()
+    // const networkDataMigration = Luggage.networks[networkIdMigration]
+    if(networkDataLuggage) {
+      const luggage = web3.eth.Contract(Luggage.abi, networkDataLuggage.address)
+      console.log(luggage)
     } else {
       window.alert('Marketplace contract not deployed to detected network.')
     }
+    // if(networkDataMigration) {
+    //   const migration = web3.eth.Contract(Migration.abi, networkDataMigration.address)
+    //   console.log(migration)
+    // } else {
+    //   window.alert('Marketplace contract not deployed to detected network.')
+    // }
   }
 
   constructor(props) {
@@ -58,25 +66,7 @@ class App extends Component {
           <div className="row">
             <main role="main" className="col-lg-12 d-flex text-center">
               <div className="content mr-auto ml-auto">
-                <a
-                  href="http://www.dappuniversity.com/bootcamp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={logo} className="App-logo" alt="logo" />
-                </a>
-                <h1>Dapp University Starter Kit</h1>
-                <p>
-                  Edit <code>src/components/App.js</code> and save to reload.
-                </p>
-                <a
-                  className="App-link"
-                  href="http://www.dappuniversity.com/bootcamp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  LEARN BLOCKCHAIN <u><b>NOW! </b></u>
-                </a>
+                <h1>Luggage Distribution</h1>
               </div>
             </main>
           </div>
