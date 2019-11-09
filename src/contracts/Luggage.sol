@@ -46,7 +46,6 @@ contract Luggage {
 
     function acceptRequest(uint _id,address payable _acceptor) public payable {
         request memory _request = requests[_id];        //Get the request
-        address payable _payer = msg.sender;    //Get the person making the payment
         _request.acceptor = _acceptor;
         require(_request.id > 0 && _request.id <= requestCount, "Invalid ID");
         require(msg.value >= _request.weight, "Invalid Value");
@@ -55,7 +54,7 @@ contract Luggage {
         _request.expired = true;
         requests[_id] = _request;
         address(_acceptor).transfer(msg.value);
-        emit requestAccepted(requestCount, _payer, _request.name, _request.weight, _request.categories, _request.expired);
+        emit requestAccepted(requestCount, msg.sender, _request.name, _request.weight, _request.categories, _request.expired);
     }
 
 }
