@@ -25,27 +25,36 @@ class App extends Component {
     }
   }
 
-  async loadBlockchainData() {
+  // async loadBlockchainData() {
+  //   const web3 = window.web3
+  //   // Load account
+  //   const accounts = await web3.eth.getAccounts()
+  //   this.setState({ account: accounts[0] })
+  //   const networkIdLuggage = await web3.eth.net.getId()
+  //   const networkDataLuggage = Luggage.networks[networkIdLuggage]
+  //   // const networkIdMigration = await web3.eth.net.getId()
+  //   // const networkDataMigration = Luggage.networks[networkIdMigration]
+  //   if(networkDataLuggage) {
+  //     const luggage = web3.eth.Contract(Luggage.abi, networkDataLuggage.address)
+  //     console.log(luggage)
+  //   } else {
+  //     window.alert('Marketplace contract not deployed to detected network.')
+  //   }
+  //   // if(networkDataMigration) {
+  //   //   const migration = web3.eth.Contract(Migration.abi, networkDataMigration.address)
+  //   //   console.log(migration)
+  //   // } else {
+  //   //   window.alert('Marketplace contract not deployed to detected network.')
+  //   // }
+  // }
+  async loadBlockchainData(){
     const web3 = window.web3
-    // Load account
-    const accounts = await web3.eth.getAccounts()
-    this.setState({ account: accounts[0] })
-    const networkIdLuggage = await web3.eth.net.getId()
-    const networkDataLuggage = Luggage.networks[networkIdLuggage]
-    // const networkIdMigration = await web3.eth.net.getId()
-    // const networkDataMigration = Luggage.networks[networkIdMigration]
-    if(networkDataLuggage) {
-      const luggage = web3.eth.Contract(Luggage.abi, networkDataLuggage.address)
-      console.log(luggage)
-    } else {
-      window.alert('Marketplace contract not deployed to detected network.')
-    }
-    // if(networkDataMigration) {
-    //   const migration = web3.eth.Contract(Migration.abi, networkDataMigration.address)
-    //   console.log(migration)
-    // } else {
-    //   window.alert('Marketplace contract not deployed to detected network.')
-    // }
+    // const web3Provider = new web3 (new web3.providers.HttpProvider("http://localhost:7545"));
+    // const getAccount = async () => {
+    const accounts = await web3.eth.getAccounts();
+    console.log(accounts);
+// };
+// getAccount();
   }
 
   constructor(props) {
