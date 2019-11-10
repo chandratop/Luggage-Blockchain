@@ -4,7 +4,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div id="content">
+      <div id="content" >
         <h2>Create Requests</h2>
         <form onSubmit={(event) => {
           event.preventDefault()
@@ -58,35 +58,35 @@ class Main extends Component {
             <td>Karan Mehta</td>
             <td>10kg</td>
             <td>6E 335</td>
-            <td><button type="button" className="btn btn-primary">Accept</button></td>
+            <td><button type="button" className="btn btn-primary" onClick={(e) => window.alert("User has accepted the luggage")}>Accept</button></td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Sneha Paul</td>
             <td>8kg</td>
             <td>SG 745</td>
-            <td><button type="button" className="btn btn-primary">Accept</button></td>
+            <td><button type="button" className="btn btn-primary" onClick={(e) => window.alert("User has accepted the luggage")}>Accept</button></td>
           </tr>
           <tr>
             <th scope="row">3</th>
             <td>Rohan Milind</td>
             <td>6kg</td>
             <td>9W 340</td>
-            <td><button type="button" className="btn btn-primary">Accept</button></td>
+            <td><button type="button" className="btn btn-primary" onClick={(e) => window.alert("User has accepted the luggage")}>Accept</button></td>
           </tr>
           <tr>
             <th scope="row">4</th>
             <td>Tarun Singh</td>
             <td>11kg</td>
             <td>IX 112</td>
-            <td><button type="button" className="btn btn-primary">Accept</button></td>
+            <td><button type="button" className="btn btn-primary" onClick={(e) => window.alert("User has accepted the luggage")}>Accept</button></td>
           </tr>
           <tr>
             <th scope="row">5</th>
             <td>George D'Souza</td>
             <td>5kg</td>
             <td>G8 902</td>
-            <td><button type="button" className="btn btn-primary">Accept</button></td>
+            <td><button type="button" className="btn btn-primary" onClick={(e) => window.alert("User has accepted the luggage")}>Accept</button></td>
           </tr>
         </table>
       </div>
