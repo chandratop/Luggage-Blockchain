@@ -33,7 +33,7 @@ contract('Luggage', ([deployer, seller, buyer]) => {
     describe('request', async() => {
         let new_request, count
         before(async() => {
-            new_request = await luggage.createRequest("Abdul Habbibbullah", web3.utils.toWei('10', 'Ether'), [1, 0, 1, 1])
+            new_request = await luggage.createRequest("Abdul Habbibbullah", web3.utils.toWei('10', 'Ether'), [1, 0, 1, 1], "SB4576")
             count = await luggage.requestCount()
         })
 
